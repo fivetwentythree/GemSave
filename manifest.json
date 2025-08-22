@@ -1,0 +1,34 @@
+{
+    "manifest_version": 3,
+    "name": "GeminiSave",
+    "version": "1.0.0",
+    "description": "Save Google AI Studio conversations to GitHub Gist or clipboard",
+    "permissions": ["storage", "clipboardWrite", "tabs", "scripting"],
+    "host_permissions": ["https://aistudio.google.com/*", "https://api.github.com/*"],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://aistudio.google.com/*"],
+            "js": ["content.js"],
+            "css": ["content.css"],
+            "run_at": "document_idle"
+        }
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icon16.png"
+        }
+    },
+    "web_accessible_resources": [
+        {
+            "resources": ["interceptor.js"],
+            "matches": ["https://aistudio.google.com/*"]
+        }
+    ],
+    "icons": {
+        "16": "icon16.png"
+    }
+}
